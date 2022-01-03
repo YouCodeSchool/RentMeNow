@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+<head>
+    <title>RentMeNow</title>
+    <link rel="stylesheet" href="assests/css/style.css">
+    <link rel="stylesheet" href="assests/css/style-contact.css">
+
+    <script>
+        function getIndex(carburant, lookFor) {
+            for (let i = 0; i < carburant.length; i++) {
+                if (carburant[i].text === lookFor) {
+
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        function changelist() {
+            let index;
+            let lookFor = [];
+            let createElem = [];
+            let new_option = document.createElement("option");
+
+            let type = document.getElementById("type");
+            let type_value = type.options[type.selectedIndex].value;
+
+            let carburant = document.getElementById("carburant");
+            let carburant_value = carburant.options[carburant.selectedIndex].value;
+            let option = carburant.options;
+
+            switch (type_value) {
+                case "moto":
+                    lookFor = ["Diesel", "Hybride"];
+                    createElem = ["Electrique", "Essence"];
+                    for (let i = 0; i < lookFor.length; i++) {
+                        index = getIndex(carburant.options, lookFor[i]);
+                        if (index !== -1) {
+                            console.log(option[index].value);
+                            carburant.remove(index);
+                        }
+                    }
+                    for (let j = 0; j < createElem.length; j++) {
+                        new_option.text = createElem[j];
+                        index = getIndex(carburant.options, createElem[j]);
+
+                        if (index === -1) {
+                            let option = document.createElement('option');
+                            option.value = createElem[j];
+                            // option.append(createElem[j]);
+                            option.text = createElem[j];
+                            carburant.add(option);
+                        }
+                    }
+
+
+                    // option[0].disabled = true;
+                    break;
+
+                case "compact":
+                    lookFor = ["Electrique"];
+                    createElem = ["Hybride", "Essence", "Diesel"];
+                    for (let i = 0; i < lookFor.length; i++) {
+                        index = getIndex(carburant.options, lookFor[i]);
+                        if (index !== -1) { carburant.remove(index); }
+                    }
+                    for (let j = 0; j < createElem.length; j++) {
+                        new_option.text = createElem[j];
+                        index = getIndex(carburant.options, createElem[j]);
+                        if (index === -1) { carburant.add(new_option); }
+                    }
+
+
+                    break;
+
+                case "citadin":
+                    lookFor = [];
+                    index_arr = getIndex(carburant.options, lookFor);
+                    createElem = ["Hybride", "Essence", "Diesel", "Electrique"];
+
+                    for (let i = 0; i < index_arr.length; i++) {
+                        carburant.remove(index_arr[i]);
+                    }
+
+                    for (let j = 0; j < createElem.length; j++) {
+                        new_option.text = createElem[j];
+                        index = getIndex(carburant.options, createElem[i]);
+                        if (index === -1) { carburant.add(new_option); }
+                    }
+
+                    break;
+
+                case "utilitaire":
+                    lookFor = ["Electrique", "Hybride", "Essence"];
+                    createElem = ["Diesel"];
+                    for (let i = 0; i < lookFor.length; i++) {
+                        index = getIndex(carburant.options, lookFor[i]);
+                        if (index !== -1) { carburant.remove(index); }
+                    }
+                    break;
+
+                    for (let j = 0; j < createElem.length; j++) {
+                        new_option.text = createElem[j];
+                        index = getIndex(carburant.options, createElem[j]);
+                        if (index === -1) { carburant.add(new_option); }
+                    }
+
+                case "berlin":
+                    lookFor = ["Electrique"];
+                    createElem = ["Diesel", "Hybride", "Essence"];
+                    for (let i = 0; i < lookFor.length; i++) {
+                        index = getIndex(carburant.options, lookFor[i]);
+                        if (index !== -1) { carburant.remove(index); }
+                    }
+
+                    for (let j = 0; j < createElem.length; j++) {
+                        new_option.text = createElem[j];
+                        index = getIndex(carburant.options, createElem[j]);
+                        if (index === -1) { carburant.add(new_option); }
+                    }
+                    break;
+
+                case "camion":
+                    lookFor = ["Electrique", "Hybride", "Essence"];
+                    createElem = ["Diesel"];
+                    for (let i = 0; i < lookFor.length; i++) {
+                        index = getIndex(carburant.options, lookFor[i]);
+                        if (index !== -1) { carburant.remove(index); }
+                    }
+
+                    for (let j = 0; j < createElem.length; j++) {
+                        new_option.text = createElem[j];
+                        index = getIndex(carburant.options, createElem[j]);
+                        if (index === -1) { carburant.add(new_option); }
+                    }
+                    break;
+
+                case "engin_chantier":
+                    lookFor = ["Electrique", "Hybride"];
+                    lookFor = ["Essence", "Diesel"];
+                    for (let i = 0; i < lookFor.length; i++) {
+                        index = getIndex(carburant.options, lookFor[i]);
+                        if (index !== -1) { carburant.remove(index); }
+                    }
+
+                    for (let j = 0; j < createElem.length; j++) {
+                        new_option.text = createElem[j];
+                        index = getIndex(carburant.options, createElem[i]);
+                        if (index === -1) { carburant.add(new_option); }
+                    }
+                    break;
+            }
+        }
+        function price_calc() {
+            let duration = document.getElementById("duration").value;
+            let type = document.getElementById("type").value;
+            let carburant = document.getElementById("carburant").value;
+            let boite_vit = document.getElementById("boite").value;
+            let price = document.getElementById("price");
+            switch (type) {
+                case "moto":
+                    if (carburant === "Electrique");
+                    break;
+            }
+
+        }
+        function popupmsg() {
+            // e.preventDefault();
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("mail").value;
+            let msg = document.getElementById("msg").value;
+            let sujet = document.getElementById("sujet").value;
+            alert("Name : " + name + "\nEmail : " + email + "\nSujet: " + sujet + "\nMessage: " + msg);
+
+            // prompt(user_info, "hello");
+
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div><a href="home.html"><img class="logo" src="./assests/img/logo.png"></a></div>
+            <nav>
+                <ul style="float: right">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="#">Reservation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+
+    </header>
+
+    <main>
+        <div class="contact">
+            <form>
+                <ul>
+                    <li>
+                        <label for="type">Vehicle type:</label>
+                        <select id="type" name="veh_type" onchange="changelist()">
+                            <option value="moto">Moto</option>
+                            <option value="compact">Compact</option>
+                            <option value="citadin">Citadin</option>
+                            <option value="utilitaire">Utilitaire</option>
+                            <option value="berlin">Berlin</option>
+                            <option value="camion">Camion</option>
+                            <option value="engin_chantier">Engin de chantier</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="carburant">Carburant:</label>
+                        <select id="carburant" name="veh_carburant">
+                            <option value="essence">Essence</option>
+                            <option value="diesel">Diesel</option>
+                            <option value="electric">Electrique</option>
+                            <option value="hybride">Hybride</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="boite">Boite à vitesse:</label>
+                        <!-- <textarea id="sujet" name="user_subject"></textarea> -->
+                        <select id="boite" name="boite_vit">
+                            <option value="manuel">Manuelle</option>
+                            <option value="automatic">Automatique</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="duration">Durée (jours):</label>
+                        <input type="number" id="duration" name="reserv_duration" min="1" max="30" value="1"
+                            oninput="price_calc()">
+                    </li>
+                    <li>
+                        <label for="start">Date de début:</label>
+                        <input type="date" id="start" name="reserv-start" value="2022-01-03" min="2022-01-03">
+                    </li>
+                    <li>
+                        <label for="price">Total price:</label>
+                        <output id="price" name="vehi_price"></output>
+                        <!-- <output id="price" name="vehi_price" for ="a b"></output> -->
+                    </li>
+                    <li class="button">
+                        <button onclick="popupmsg()" type="submit">Submit</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="before-footer">
+            <nav class="social-media">
+                <ul>
+                    <li><a href="#">Twitter<a></li>
+                    <li><a href="#">Insta<a></li>
+                    <li><a href="#">fb<a></li>
+                    <li><a href="#">Linkedin<a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-bar">
+            <h3>All Copyrights are reserved Ⓒ, 2021</h3>
+        </div>
+    </footer>
+</body>
+
+</html>

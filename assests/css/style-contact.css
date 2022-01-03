@@ -101,10 +101,15 @@ button:hover{
 }
 
 main{
-  background-image : url(../img/bg-contact.webp);
+  /* background-image : url(../img/bg-contact.webp); */
   background-size: cover;
   background-position : bottom center;
   justify-content : center;
-  padding-bottom : 0;
+  padding-bottom : 200px;
   height : 295px;
+}
+
+body {
+  /* background-image : url(../img/bg-contact.webp); */
+  /* width : 100%; */
 }

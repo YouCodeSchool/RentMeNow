@@ -1,0 +1,138 @@
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.products-slideshow {
+    display : flex;
+    flex-direction: column;
+    /* max-width: 1000px; */
+    /* position: relative; */
+    text-align: center;
+    
+    margin: auto;
+}
+.products-slideshow img {
+  height : 100%;
+  width : 100%;
+}
+
+/* .switch{
+  display : flex;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 5px;
+
+} */
+/* .electrique {
+  text-align: center;
+  justify-content: center;
+  position: relative;
+} */
+
+
+/* Hide the images by default */
+.mySlides_E,  .mySlides_H, .mySlides_Es, .mySlides_D{
+  display: none;
+  /* position : relative; */
+}
+
+/* Next & previous buttons */
+.prev_E, .next_E, .prev_H, .next_H, .prev_Es, .next_Es, .prev_D, .next_D {
+  cursor: pointer;
+  /* display : flex; */
+  /* position: absolute; */
+  /* top: 50%; */
+  width: auto;
+  /* margin-top: -22px; */
+  padding: 16px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  /* align-items: center;
+  text-align: center;
+  justify-content: center; */
+}
+
+/* Position the "next button" to the right */
+/* .next_E,  .next_H, .next_Es, .next_D {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+} */
+
+
+
+/* On hover, add a black background color with a little bit see-through */
+.prev_E:hover, .next_E:hover, .prev_H:hover, .next_H:hover, .prev_Es:hover, .next_Es:hover,.prev_D:hover, .next_D:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  font-size: 40px;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #000000;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 8px 12px;
+  /* position: absolute; */
+  position: relative;
+  top: 0;
+  text-align: center;
+  /* background-color: rgb(245, 245, 245); */
+}
+
+/* The dots/bullets/indicators */
+.dot_E, .dot_H,.dot_Es, .dot_D {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  /* display: inline-block; */
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot_E:hover, .dot_H:hover, .dot_Es:hover, .dot_D:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
