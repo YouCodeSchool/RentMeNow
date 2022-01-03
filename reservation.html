@@ -32,6 +32,9 @@
             let carburant_value = carburant.options[carburant.selectedIndex].value;
             // let option = carburant.options;
 
+            let boite = document.getElementById("boite");
+            let boite_elem = ["Manuelle", "Automatique"];
+
             switch (type_value) {
                 case "moto":
                     lookFor = ["Diesel", "Hybride"];
@@ -48,10 +51,18 @@
 
                         if (index === -1) {
                             let option = document.createElement('option');
-                            option.value = createElem[j];
+                            // option.value = createElem[j];
                             // option.append(createElem[j]);
                             option.text = createElem[j];
                             carburant.add(option);
+                        }
+                    }
+
+                    for (let k = 0; k < boite_elem.length; k++) {
+                        index = getIndex(boite.options, boite_elem[k]);
+                        if (index !== -1) {
+                            // console.log(option[index].value);
+                            boite.remove(index);
                         }
                     }
                     // option[0].disabled = true;
@@ -71,10 +82,22 @@
 
                         if (index === -1) {
                             let option = document.createElement('option');
-                            option.value = createElem[j];
+                            // option.value = createElem[j];
                             // option.append(createElem[j]);
                             option.text = createElem[j];
                             carburant.add(option);
+                        }
+                    }
+
+                    for (let k = 0; k < boite_elem.length; k++) {
+                        index = getIndex(boite.options, boite_elem[k]);
+
+                        if (index === -1) {
+                            let option = document.createElement('option');
+                            // option.value = boite_elem[k];
+                            // option.append(createElem[j]);
+                            option.text = boite_elem[k];
+                            boite.add(option);
                         }
                     }
 
@@ -103,6 +126,19 @@
                     }
                     break;
 
+                    for (let k = 0; k < boite_elem.length; k++) {
+                        index = getIndex(boite.options, boite_elem[k]);
+
+                        if (index === -1) {
+                            let option = document.createElement('option');
+                            // option.value = boite_elem[k];
+                            // option.append(createElem[j]);
+                            option.text = boite_elem[k];
+                            boite.add(option);
+                        }
+                    }
+
+
                 case "utilitaire":
                     lookFor = ["Electrique", "Hybride", "Essence"];
                     createElem = ["Diesel"];
@@ -110,7 +146,6 @@
                         index = getIndex(carburant.options, lookFor[i]);
                         if (index !== -1) { carburant.remove(index); }
                     }
-                    break;
 
                     for (let j = 0; j < createElem.length; j++) {
                         index = getIndex(carburant.options, createElem[j]);
@@ -123,6 +158,19 @@
                             carburant.add(option);
                         }
                     }
+
+                    for (let k = 0; k < boite_elem.length; k++) {
+                        index = getIndex(boite.options, boite_elem[k]);
+
+                        if (index === -1) {
+                            let option = document.createElement('option');
+                            // option.value = boite_elem[k];
+                            // option.append(createElem[j]);
+                            option.text = boite_elem[k];
+                            boite.add(option);
+                        }
+                    }
+                    break;
 
                 case "berlin":
                     lookFor = ["Electrique"];
@@ -143,6 +191,19 @@
                             carburant.add(option);
                         }
                     }
+
+                    for (let k = 0; k < boite_elem.length; k++) {
+                        index = getIndex(boite.options, boite_elem[k]);
+
+                        if (index === -1) {
+                            let option = document.createElement('option');
+                            // option.value = boite_elem[k];
+                            // option.append(createElem[j]);
+                            option.text = boite_elem[k];
+                            boite.add(option);
+                        }
+                    }
+
                     break;
 
                 case "camion":
@@ -164,11 +225,25 @@
                             carburant.add(option);
                         }
                     }
+
+                    for (let k = 0; k < boite_elem.length; k++) {
+                        index = getIndex(boite.options, boite_elem[k]);
+
+                        if (index === -1) {
+                            let option = document.createElement('option');
+                            // option.value = boite_elem[k];
+                            // option.append(createElem[j]);
+                            option.text = boite_elem[k];
+                            boite.add(option);
+                        }
+                    }
+
                     break;
 
                 case "engin_chantier":
                     lookFor = ["Electrique", "Hybride"];
                     createElem = ["Essence", "Diesel"];
+
                     for (let i = 0; i < lookFor.length; i++) {
                         index = getIndex(carburant.options, lookFor[i]);
                         if (index !== -1) { carburant.remove(index); }
@@ -185,29 +260,235 @@
                             carburant.add(option);
                         }
                     }
+
+                    for (let k = 0; k < boite_elem.length; k++) {
+                        index = getIndex(boite.options, boite_elem[k]);
+
+                        if (index === -1) {
+                            let option = document.createElement('option');
+                            // option.value = boite_elem[k];
+                            // option.append(createElem[j]);
+                            option.text = boite_elem[k];
+                            boite.add(option);
+                        }
+                    }
                     break;
             }
         }
+
         function price_calc() {
             let duration = document.getElementById("duration").value;
-            let type = document.getElementById("type").value;
-            let carburant = document.getElementById("carburant").value;
-            let boite_vit = document.getElementById("boite").value;
-            let price = document.getElementById("price");
+            let options = document.getElementById("type").options;
+            let type = options[options.selectedIndex].value;
+            let carburant = document.getElementById("carburant").options[options.selectedIndex].value;
+            let boite_vit = document.getElementById("boite").options[options.selectedIndex].value;
+            // let price = document.getElementById("price");
+            let price = document.getElementById("output");
+            let price_int;
+
             switch (type) {
                 case "moto":
-                    if (carburant === "Electrique");
+                    if (carburant === "essence") {
+                        price_int = 10 * parseInt(duration);
+                        price.innerHTML = "Total Price : " + price_int;
+                    }
+
+                    else if (carburant === "electric") {
+
+                    }
+
+                    break;
+
+                case "compact":
+                    if (carburant === "essence") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+
+                    }
+                    else if (carburant === "electric") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+
+                    else if (carburant === "diesel") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+
+                    else if (carburant === "hybride") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+                    break;
+
+                case "citadin":
+                    if (carburant === "essence") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+
+                    }
+                    else if (carburant === "electric") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+
+                    else if (carburant === "diesel") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+
+                    else if (carburant === "hybride") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+                    break;
+
+                case "utilitaire":
+                    if (carburant === "essence") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+
+                    }
+                    else if (carburant === "electric") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+
+                    else if (carburant === "diesel") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+
+                    else if (carburant === "hybride") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+
+                    break;
+
+                case "berlin":
+                    if (carburant === "essence") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+
+                    }
+                    else if (carburant === "electric") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+
+                    else if (carburant === "diesel") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+
+                    else if (carburant === "hybride") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+                    break;
+
+                case "camion":
+                    if (carburant === "essence") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+
+                    }
+                    else if (carburant === "electric") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+
+                    else if (carburant === "diesel") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+
+                    else if (carburant === "hybride") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+                    break;
+
+                case "engin_chantier":
+                    if (carburant === "essence") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+
+                    }
+                    else if (carburant === "electric") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+
+                    else if (carburant === "diesel") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
+
+                    else if (carburant === "hybride") {
+                        if (boite_vit === "manuel") {
+
+                        }
+                        else { }
+                    }
                     break;
             }
 
         }
         function popupmsg() {
             // e.preventDefault();
-            let name = document.getElementById("name").value;
-            let email = document.getElementById("mail").value;
-            let msg = document.getElementById("msg").value;
-            let sujet = document.getElementById("sujet").value;
-            alert("Name : " + name + "\nEmail : " + email + "\nSujet: " + sujet + "\nMessage: " + msg);
+            // let name = document.getElementById("name").value;
+            // let email = document.getElementById("mail").value;
+            // let msg = document.getElementById("msg").value;
+            // let sujet = document.getElementById("sujet").value;
+            // alert("Name : " + name + "\nEmail : " + email + "\nSujet: " + sujet + "\nMessage: " + msg);
 
             // prompt(user_info, "hello");
 
@@ -260,13 +541,13 @@
                         <label for="boite">Boite à vitesse:</label>
                         <!-- <textarea id="sujet" name="user_subject"></textarea> -->
                         <select id="boite" name="boite_vit">
-                            <option value="manuel">Manuelle</option>
-                            <option value="automatic">Automatique</option>
+                            <!-- <option value="manuel">Manuelle</option> -->
+                            <!-- <option value="automatic">Automatique</option> -->
                         </select>
                     </li>
                     <li>
                         <label for="duration">Durée (jours):</label>
-                        <input type="number" id="duration" name="reserv_duration" min="1" max="30" value="1"
+                        <input type="number" id="duration" name="reserv_duration" min="1" max="30" value="0"
                             oninput="price_calc()">
                     </li>
                     <li>
@@ -274,8 +555,10 @@
                         <input type="date" id="start" name="reserv-start" value="2022-01-03" min="2022-01-03">
                     </li>
                     <li>
-                        <label for="price">Total price:</label>
-                        <output id="price" name="vehi_price"></output>
+                        <!-- <label for="price">Total price:</label>
+                        <output id="price" name="vehi_price" for=""></output> -->
+                        <h4 id="output">
+                        </h4>
                         <!-- <output id="price" name="vehi_price" for ="a b"></output> -->
                     </li>
                     <li class="button">
