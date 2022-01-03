@@ -30,7 +30,7 @@
 
             let carburant = document.getElementById("carburant");
             let carburant_value = carburant.options[carburant.selectedIndex].value;
-            let option = carburant.options;
+            // let option = carburant.options;
 
             switch (type_value) {
                 case "moto":
@@ -39,12 +39,34 @@
                     for (let i = 0; i < lookFor.length; i++) {
                         index = getIndex(carburant.options, lookFor[i]);
                         if (index !== -1) {
-                            console.log(option[index].value);
+                            // console.log(option[index].value);
                             carburant.remove(index);
                         }
                     }
                     for (let j = 0; j < createElem.length; j++) {
-                        new_option.text = createElem[j];
+                        index = getIndex(carburant.options, createElem[j]);
+
+                        if (index === -1) {
+                            let option = document.createElement('option');
+                            option.value = createElem[j];
+                            // option.append(createElem[j]);
+                            option.text = createElem[j];
+                            carburant.add(option);
+                        }
+                    }
+                    // option[0].disabled = true;
+                    break;
+
+                case "compact":
+                    lookFor = ["Electrique"];
+                    createElem = ["Hybride", "Essence", "Diesel"];
+
+                    for (let i = 0; i < lookFor.length; i++) {
+                        index = getIndex(carburant.options, lookFor[i]);
+                        if (index !== -1) { carburant.remove(index); }
+                    }
+
+                    for (let j = 0; j < createElem.length; j++) {
                         index = getIndex(carburant.options, createElem[j]);
 
                         if (index === -1) {
@@ -57,40 +79,28 @@
                     }
 
 
-                    // option[0].disabled = true;
-                    break;
-
-                case "compact":
-                    lookFor = ["Electrique"];
-                    createElem = ["Hybride", "Essence", "Diesel"];
-                    for (let i = 0; i < lookFor.length; i++) {
-                        index = getIndex(carburant.options, lookFor[i]);
-                        if (index !== -1) { carburant.remove(index); }
-                    }
-                    for (let j = 0; j < createElem.length; j++) {
-                        new_option.text = createElem[j];
-                        index = getIndex(carburant.options, createElem[j]);
-                        if (index === -1) { carburant.add(new_option); }
-                    }
-
-
                     break;
 
                 case "citadin":
-                    lookFor = [];
-                    index_arr = getIndex(carburant.options, lookFor);
+                    // lookFor = [];
                     createElem = ["Hybride", "Essence", "Diesel", "Electrique"];
 
-                    for (let i = 0; i < index_arr.length; i++) {
-                        carburant.remove(index_arr[i]);
-                    }
+                    // for (let i = 0; i < lookFor.length; i++) {
+                    //     index = getIndex(carburant.options, lookFor);
+                    //     if (index !== -1) { carburant.remove(index); }
+                    // }
 
                     for (let j = 0; j < createElem.length; j++) {
-                        new_option.text = createElem[j];
-                        index = getIndex(carburant.options, createElem[i]);
-                        if (index === -1) { carburant.add(new_option); }
-                    }
+                        index = getIndex(carburant.options, createElem[j]);
 
+                        if (index === -1) {
+                            let option = document.createElement('option');
+                            option.value = createElem[j];
+                            // option.append(createElem[j]);
+                            option.text = createElem[j];
+                            carburant.add(option);
+                        }
+                    }
                     break;
 
                 case "utilitaire":
@@ -103,9 +113,15 @@
                     break;
 
                     for (let j = 0; j < createElem.length; j++) {
-                        new_option.text = createElem[j];
                         index = getIndex(carburant.options, createElem[j]);
-                        if (index === -1) { carburant.add(new_option); }
+
+                        if (index === -1) {
+                            let option = document.createElement('option');
+                            option.value = createElem[j];
+                            // option.append(createElem[j]);
+                            option.text = createElem[j];
+                            carburant.add(option);
+                        }
                     }
 
                 case "berlin":
@@ -117,9 +133,15 @@
                     }
 
                     for (let j = 0; j < createElem.length; j++) {
-                        new_option.text = createElem[j];
                         index = getIndex(carburant.options, createElem[j]);
-                        if (index === -1) { carburant.add(new_option); }
+
+                        if (index === -1) {
+                            let option = document.createElement('option');
+                            option.value = createElem[j];
+                            // option.append(createElem[j]);
+                            option.text = createElem[j];
+                            carburant.add(option);
+                        }
                     }
                     break;
 
@@ -132,24 +154,36 @@
                     }
 
                     for (let j = 0; j < createElem.length; j++) {
-                        new_option.text = createElem[j];
                         index = getIndex(carburant.options, createElem[j]);
-                        if (index === -1) { carburant.add(new_option); }
+
+                        if (index === -1) {
+                            let option = document.createElement('option');
+                            option.value = createElem[j];
+                            // option.append(createElem[j]);
+                            option.text = createElem[j];
+                            carburant.add(option);
+                        }
                     }
                     break;
 
                 case "engin_chantier":
                     lookFor = ["Electrique", "Hybride"];
-                    lookFor = ["Essence", "Diesel"];
+                    createElem = ["Essence", "Diesel"];
                     for (let i = 0; i < lookFor.length; i++) {
                         index = getIndex(carburant.options, lookFor[i]);
                         if (index !== -1) { carburant.remove(index); }
                     }
 
                     for (let j = 0; j < createElem.length; j++) {
-                        new_option.text = createElem[j];
-                        index = getIndex(carburant.options, createElem[i]);
-                        if (index === -1) { carburant.add(new_option); }
+                        index = getIndex(carburant.options, createElem[j]);
+
+                        if (index === -1) {
+                            let option = document.createElement('option');
+                            option.value = createElem[j];
+                            // option.append(createElem[j]);
+                            option.text = createElem[j];
+                            carburant.add(option);
+                        }
                     }
                     break;
             }
@@ -217,9 +251,9 @@
                         <label for="carburant">Carburant:</label>
                         <select id="carburant" name="veh_carburant">
                             <option value="essence">Essence</option>
-                            <option value="diesel">Diesel</option>
+                            <!-- <option value="diesel">Diesel</option> -->
                             <option value="electric">Electrique</option>
-                            <option value="hybride">Hybride</option>
+                            <!-- <option value="hybride">Hybride</option> -->
                         </select>
                     </li>
                     <li>
