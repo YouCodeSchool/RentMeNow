@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+*{
+    box-sizing: border-box;
+}
 body{
     background-color: rgb(255, 255, 255);
     margin: 0px;
@@ -17,6 +20,7 @@ main .services_2{
     margin-top : 20px;
     background-color: rgba(187, 187, 187, 0.164);
 }
+
 
 .logo{
    /* display : block; */
@@ -41,10 +45,9 @@ header .container{
     justify-content:space-between;
     background-color: rgba(233, 250, 255, 0.7);
     flex-wrap: wrap;
-    width : 100%;
     position : fixed;
     top : 0;
-    
+    width : 100%; 
 }
 
 nav ul{
@@ -87,16 +90,29 @@ nav li{
     font-size : 20px;
 
 }
+.info_products{
+    display : flex;
+    text-align: left;
+    justify-content: left;
+    align-items : center;
+    color: rgb(0, 0, 0);
+    margin: 10px 70px;
+    font-size : 45px;
+
+}
 .welcome {
     /* /* float: left; */
     /* justify-content: left; */ 
     /* opacity : 1.0; */
-    text-align: center;
-    
+    text-align: left;
+    /* position: relative; */
+    /* left: 3rem; */
+    margin: 3rem;
     align-items : center;
     color :rgb(255, 255, 255) ;
-    
-   
+    font-size :1.5rem;
+    /* width: max-content; */
+
 }
 .services{
     display : flex;
@@ -106,6 +122,8 @@ nav li{
     /* flex-wrap: wrap; */
     font-weight: bold;
     font-size : 20px;
+    /* height : 450px; */
+    min-height: 450px;
 }
 
 
@@ -201,7 +219,13 @@ footer ul{
     justify-content: center;
 }
 
+.object-fit{
+    object-fit: cover;
+}
 @media (max-width: 1060px) {
+    body {
+        min-height: 100vh;
+    }
     .services {
         display : flex;
         flex-direction: column;
@@ -213,6 +237,9 @@ footer ul{
         height : 100%;
         
     }
+    footer{
+        margin-top: 200px;
+    }
     .footer-bar {
         text-align: center;
     }
@@ -220,7 +247,7 @@ footer ul{
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-left : 20px;
+        margin-left : 10px;
 
     }
     .ss_2 img{

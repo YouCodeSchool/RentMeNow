@@ -1,0 +1,134 @@
+/* main { */
+    /* background-image: url(../img/bg-reservation.jpg);
+    background-repeat: no-repeat; */
+    /* background-size: ; */
+/* } */
+
+main .contact{
+  margin-top : 150px;
+  /* background-color: rgba(187, 187, 187, 0.164); */
+  background-image: url(../img/bg-reservation.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+form {
+    /* Center the form on the page */
+  margin: 0  auto;
+  max-width : 600px;
+    /* height : 395px; */
+    /* Form outline */
+  padding: 1em;
+    /* border: 1px solid #CCC; */
+    /* border-radius: 1em; */
+    /* justify-content: center;
+    align-items: center; */
+    /* display: inline-block; */
+    /* background-color: rgba(255, 255, 255, 0.438); */
+    background-color: rgba(255, 255, 255, 0.733);
+
+  }
+
+  form ul {
+    list-style: none;
+    padding: 0;
+    margin: 14%;
+    font-weight: bold;
+  } 
+
+  form li + li {
+    margin-top: 1em;
+  }
+
+  label {
+    /* Uniform size & alignment */
+    display: inline-block;
+    width: 120px;
+    text-align: left;
+    color : rgb(0, 0, 0);
+  }
+
+  input,
+textarea {
+  /* To make sure that all text fields have the same font settings
+     By default, textareas have a monospace font */
+  
+  font: 1em sans-serif;
+
+  /* Uniform text field size */
+  width: 300px;
+  box-sizing: border-box;
+
+  /* Match form field borders */
+  border: 1px solid #999;
+}
+
+input:focus,
+textarea:focus {
+  /* Additional highlight for focused elements */
+  border-color: #000;
+}
+
+
+textarea {
+  /* Align multiline text fields with their labels */
+  vertical-align: top;
+
+  /* Provide space to type some text */
+  height: 5em;
+}
+
+.button {
+  /* Align buttons with the text fields */
+  padding-left: 90px; /* same size as the label elements */
+  /* margin-left : 100px; */
+  
+}
+
+button {
+  /* This extra margin represent roughly the same space as the space
+     between the labels and their text fields */
+  margin-left: .5em;
+  
+
+
+    display:inline-block;
+    padding:0.7em 1.7em;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.4em;
+    box-sizing: border-box;
+    text-decoration:none;
+    /* font-family:'Open-sans',sans-serif; */
+    font-weight: 700;
+    color:#0f0f0f;
+    background-color:rgba(233, 250, 255, 0.7);
+    box-shadow:inset 0 -0.6em 1em -0.35em rgba(0,0,0,0.17),inset 0 0.6em 2em -0.3em rgba(255,255,255,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
+    text-align:center;
+    position:relative;
+}
+
+button:hover{
+  background-color:rgb(233, 250, 255);
+  
+}
+
+main{
+  /* background-image : url(../img/bg-contact.webp); */
+  /* background-size: cover; */
+  /* background-position : bottom center; */
+  justify-content : center;
+  /* padding-bottom : 200px; */
+  
+  
+
+  
+}
+#output {
+  font-size : 20px;
+}
+body {
+  /* background-image : url(../img/bg-contact.wsebp); */
+  /* width : 100%; */
+ 
+}
+

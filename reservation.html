@@ -4,15 +4,23 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RentMeNow</title>
     <link rel="stylesheet" href="assests/css/style.css">
-    <link rel="stylesheet" href="assests/css/style-contact.css">
+    <!-- <link rel="stylesheet" href="assests/css/style-contact2.css"> -->
+    <link rel="stylesheet" href="assests/css/style-reservation.css">
 
     <script>
+        //moto ; citadine ; compact;  berline;  utilitaire; engin de chantier;  camion
+        var stock_prices = [10, 12, 14, 20, 16, 900, 250];
+        //Electric,  hybride,  essence , diesel
+        var percentage_prices = [5, 9, 14, 21];
+        var automatic_percentage = 19;
         function getIndex(carburant, lookFor) {
             for (let i = 0; i < carburant.length; i++) {
                 if (carburant[i].text === lookFor) {
-
                     return i;
                 }
             }
@@ -99,9 +107,9 @@
                             option.text = boite_elem[k];
                             boite.add(option);
                         }
+                        boite.remove(1);
                     }
-
-
+                    boite.remove(1);
                     break;
 
                 case "citadin":
@@ -124,8 +132,6 @@
                             carburant.add(option);
                         }
                     }
-                    break;
-
                     for (let k = 0; k < boite_elem.length; k++) {
                         index = getIndex(boite.options, boite_elem[k]);
 
@@ -136,7 +142,10 @@
                             option.text = boite_elem[k];
                             boite.add(option);
                         }
+
                     }
+                    boite.remove(1);
+                    break;
 
 
                 case "utilitaire":
@@ -170,6 +179,7 @@
                             boite.add(option);
                         }
                     }
+                    boite.remove(1);
                     break;
 
                 case "berlin":
@@ -203,7 +213,7 @@
                             boite.add(option);
                         }
                     }
-
+                    boite.remove(0);
                     break;
 
                 case "camion":
@@ -237,7 +247,7 @@
                             boite.add(option);
                         }
                     }
-
+                    boite.remove(0);
                     break;
 
                 case "engin_chantier":
@@ -272,213 +282,128 @@
                             boite.add(option);
                         }
                     }
+                    boite.remove(1);
                     break;
+
             }
+
+            price_calc();
         }
 
         function price_calc() {
             let duration = document.getElementById("duration").value;
             let options = document.getElementById("type").options;
             let type = options[options.selectedIndex].value;
-            let carburant = document.getElementById("carburant").options[options.selectedIndex].value;
-            let boite_vit = document.getElementById("boite").options[options.selectedIndex].value;
+            let carburant_select = document.getElementById("carburant");
+            let carburant = carburant_select.options[carburant_select.selectedIndex].text;
+
+            // let boite_vit_select = document.getElementById("boite");
+            // let boite_vit = boite_vit_select.options[boite_vit_select.selectedIndex].value;
             // let price = document.getElementById("price");
             let price = document.getElementById("output");
             let price_int;
 
-            switch (type) {
-                case "moto":
-                    if (carburant === "essence") {
-                        price_int = 10 * parseInt(duration);
-                        price.innerHTML = "Total Price : " + price_int;
-                    }
+            if (duration != 0) { //check duration if diff than 0 just to not display percentage added to price
+                switch (type) {
+                    case "moto":
+                        if (carburant === "Essence") {
+                            price_int = stock_prices[0] * parseInt(duration) + stock_prices[0] * percentage_prices[2] / 100;
+                            price.innerHTML = "Total Price : " + price_int + "€";
+                            // console.log(price_int);
+                        }
 
-                    else if (carburant === "electric") {
+                        else if (carburant === "Electrique") {
+                            price_int = stock_prices[0] * parseInt(duration) + stock_prices[0] * percentage_prices[0] / 100;
+                            price.innerHTML = "Total Price : " + price_int + "€";
+                        }
 
-                    }
+                        break;
 
-                    break;
+                    case "compact":
+                        if (carburant === "Essence") {
+                            price_int = stock_prices[2] * parseInt(duration) + stock_prices[2] * percentage_prices[2] / 100;
+                            price.innerHTML = "Total Price : " + price_int + "€";
+                        }
 
-                case "compact":
-                    if (carburant === "essence") {
-                        if (boite_vit === "manuel") {
+                        else if (carburant === "Diesel") {
+                            price_int = stock_prices[2] * parseInt(duration) + stock_prices[2] * percentage_prices[3] / 100;
+                            price.innerHTML = "Total Price : " + price_int + "€";
+                        }
+
+                        else if (carburant === "Hybride") {
+                            price_int = stock_prices[2] * parseInt(duration) + stock_prices[2] * percentage_prices[1] / 100;
+                            price.innerHTML = "Total Price : " + price_int + "€";
+                        }
+                        break;
+
+                    case "citadin":
+                        if (carburant === "Essence") {
+                            price_int = stock_prices[1] * parseInt(duration) + stock_prices[1] * percentage_prices[2] / 100;
+                            price.innerHTML = "Total Price : " + price_int + "€";
 
                         }
-                        else { }
+                        else if (carburant === "Electrique") {
+                            price_int = stock_prices[1] * parseInt(duration) + stock_prices[1] * percentage_prices[0] / 100;
+                            price.innerHTML = "Total Price : " + price_int + "€";
+                        }
 
-                    }
-                    else if (carburant === "electric") {
-                        if (boite_vit === "manuel") {
+                        else if (carburant === "Diesel") {
+                            price_int = stock_prices[1] * parseInt(duration) + stock_prices[1] * percentage_prices[3] / 100;
+                            price.innerHTML = "Total Price : " + price_int + "€";
+                        }
+
+                        else if (carburant === "Hybride") {
+                            price_int = stock_prices[1] * parseInt(duration) + stock_prices[1] * percentage_prices[1] / 100;
+                            price.innerHTML = "Total Price : " + price_int + "€";
+                        }
+                        break;
+
+
+                    case "utilitaire":
+                        if (carburant === "Diesel") {
+                            price_int = stock_prices[4] * parseInt(duration) + stock_prices[4] * percentage_prices[3] / 100;
+                            price.innerHTML = "Total Price : " + price_int + "€";
+                        }
+
+                        break;
+
+                    case "berlin":
+                        if (carburant === "Essence") {
+                            price_int = stock_prices[3] * parseInt(duration) + stock_prices[3] * (percentage_prices[2] + automatic_percentage / 100);
+                            price.innerHTML = "Total Price : " + price_int + "€";
 
                         }
-                        else { }
-                    }
+                        else if (carburant === "Diesel") {
+                            price_int = stock_prices[3] * parseInt(duration) + stock_prices[3] * (percentage_prices[3] + automatic_percentage / 100);
+                            price.innerHTML = "Total Price : " + price_int + "€";
+                        }
 
-                    else if (carburant === "diesel") {
-                        if (boite_vit === "manuel") {
+                        else if (carburant === "Hybride") {
+                            price_int = stock_prices[3] * parseInt(duration) + stock_prices[3] * (percentage_prices[1] + automatic_percentage / 100);
+                            price.innerHTML = "Total Price : " + price_int + "€";
+                        }
+                        break;
+
+                    case "camion":
+                        if (carburant === "Diesel") {
+                            price_int = stock_prices[6] * parseInt(duration) + stock_prices[6] * (percentage_prices[3] + automatic_percentage / 100);
+                            price.innerHTML = "Total Price : " + price_int + "€";
+                        }
+                        break;
+
+                    case "engin_chantier":
+                        if (carburant === "Essence") {
+                            price_int = stock_prices[5] * parseInt(duration) + stock_prices[5] * percentage_prices[2] / 100;
+                            price.innerHTML = "Total Price : " + price_int + "€";
 
                         }
-                        else { }
-                    }
 
-                    else if (carburant === "hybride") {
-                        if (boite_vit === "manuel") {
-
+                        else if (carburant === "Diesel") {
+                            price_int = stock_prices[5] * parseInt(duration) + stock_prices[5] * percentage_prices[3] / 100;
+                            price.innerHTML = "Total Price : " + price_int + "€";
                         }
-                        else { }
-                    }
-                    break;
-
-                case "citadin":
-                    if (carburant === "essence") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-
-                    }
-                    else if (carburant === "electric") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-                    }
-
-                    else if (carburant === "diesel") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-                    }
-
-                    else if (carburant === "hybride") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-                    }
-                    break;
-
-                case "utilitaire":
-                    if (carburant === "essence") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-
-                    }
-                    else if (carburant === "electric") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-                    }
-
-                    else if (carburant === "diesel") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-                    }
-
-                    else if (carburant === "hybride") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-                    }
-
-                    break;
-
-                case "berlin":
-                    if (carburant === "essence") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-
-                    }
-                    else if (carburant === "electric") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-                    }
-
-                    else if (carburant === "diesel") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-                    }
-
-                    else if (carburant === "hybride") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-                    }
-                    break;
-
-                case "camion":
-                    if (carburant === "essence") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-
-                    }
-                    else if (carburant === "electric") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-                    }
-
-                    else if (carburant === "diesel") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-                    }
-
-                    else if (carburant === "hybride") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-                    }
-                    break;
-
-                case "engin_chantier":
-                    if (carburant === "essence") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-
-                    }
-                    else if (carburant === "electric") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-                    }
-
-                    else if (carburant === "diesel") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-                    }
-
-                    else if (carburant === "hybride") {
-                        if (boite_vit === "manuel") {
-
-                        }
-                        else { }
-                    }
-                    break;
+                        break;
+                }
             }
 
         }
@@ -489,8 +414,8 @@
             // let msg = document.getElementById("msg").value;
             // let sujet = document.getElementById("sujet").value;
             // alert("Name : " + name + "\nEmail : " + email + "\nSujet: " + sujet + "\nMessage: " + msg);
-
-            // prompt(user_info, "hello");
+            let price = document.getElementById("output");
+            prompt("Total rent price : ", price.innerHTML);
 
         }
     </script>
@@ -530,7 +455,7 @@
                     </li>
                     <li>
                         <label for="carburant">Carburant:</label>
-                        <select id="carburant" name="veh_carburant">
+                        <select id="carburant" name="veh_carburant" onchange="price_calc()">
                             <option value="essence">Essence</option>
                             <!-- <option value="diesel">Diesel</option> -->
                             <option value="electric">Electrique</option>
